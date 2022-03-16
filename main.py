@@ -97,7 +97,7 @@ from gensim.models import Word2Vec
 # Load saved gensim fastText model
 fast_Text_model = Word2Vec.load("model/ft_model_yelp")
 
-# Check word embedding for a perticular word
+# Check word embedding for a particular word
 print(fast_Text_model.wv['chicken'])
 print(fast_Text_model.wv.most_similar('chicken', topn=10))
 print(fast_Text_model.wv.similarity('beer', 'spirit'))
@@ -107,7 +107,7 @@ print(fast_Text_model.wv.most_similar(negative=["chicken"], topn=10))
 # tsne plot for below word
 # for_word = 'food'
 def tsne_plot(for_word, w2v_model):
-    # trained fastText model dimention
+    # trained fastText model dimension
     dim_size = w2v_model.wv.vectors.shape[1]
 
     arrays = np.empty((0, dim_size), dtype='f')
@@ -127,7 +127,7 @@ def tsne_plot(for_word, w2v_model):
         color_list.append('green')
         arrays = np.append(arrays, wrd_vector, axis=0)
 
-    # ---------------------- Apply PCA and tsne to reduce dimention --------------
+    # ---------------------- Apply PCA and tsne to reduce dimension --------------
 
     # fit 2d PCA model to the similar word vectors
     model_pca = PCA(n_components=10).fit_transform(arrays)
@@ -170,6 +170,7 @@ def tsne_plot(for_word, w2v_model):
     plt.ylim(Y[:, 1].min() - 50, Y[:, 1].max() + 50)
 
     plt.title('t-SNE visualization for word "{}'.format(for_word.title()) + '"')
+
 
 # tsne plot for top 10 similar word to 'chicken'
 tsne_plot(for_word='chicken', w2v_model=fast_Text_model)
