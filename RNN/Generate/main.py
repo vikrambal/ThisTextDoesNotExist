@@ -13,7 +13,7 @@ FILE_PATH = "data/wonderland.txt"
 BASENAME = os.path.basename(FILE_PATH)
 
 #create seed that will start generation
-seed = "chapter xiii"
+seed = "luke met the queen of hearts"
 
 # load vocab dictionaries to this file
 char2int = pickle.load(open(f"{BASENAME}-char2int.pickle", "rb"))
@@ -28,7 +28,7 @@ model = Sequential([
     Dense(vocab_size, activation="softmax"),
 ])
 
-# TODO COMMENTS
+
 # load the optimal weights
 model.load_weights(f"results/{BASENAME}-{sequence_length}.h5")
 s = seed
