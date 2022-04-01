@@ -13,6 +13,7 @@ fast_Text_model = Word2Vec.load("ft_model_yelp")
 #from sklearn.manifold import TSNE
 #import seaborn as sns
 #import matplotlib.pyplot as plt
+
 #setting up Flask
 app = Flask(__name__) #this has 2 underscores on each side
 app.secret_key = 'himynameistreihaveabasketballgametmrwwhereimapointguardigotshoegameandi'
@@ -20,17 +21,17 @@ app.secret_key = 'himynameistreihaveabasketballgametmrwwhereimapointguardigotsho
 #Opening page here
 @app.route('/')
 def index():
-   return render_template('ttdne.html')
+   return render_template('randomgen.html')
 
-@app.route('/topic')
+@app.route('/qna')
 def topic():
-    return render_template('topic.html')
+    return render_template('qna.html')
 
 @app.route('/embeddings', methods=['POST', 'GET'])
 def analyzeWord():
-    
-    #word = fast_Text_model.wv[targetWord]
-    positives = fast_Text_model.wv.most_similar('chicken', topn=10)
-    #similarity = fast_Text_model.wv.similarity('beer', 'spirit')
-    #negatives = fast_Text_model.wv.most_similar(negative=[targetWord], topn=10)
-    return render_template('embeddings.html', positives)
+    if request.method == 'POST' and 'inputWord' in request.form:
+        targetWord = request.form.get("targetWord")
+        positives = fast_Text_model.wv.most_similar(targetWord, topn=10)
+        negatives = fast_Text_model.wv.most_similar(negative=[targetWord], topn=10)
+        similarity = fast_Text_model.wv.similarity(targetWord, 'spirit')
+    return render_template('embeddings.html', positiveWords=positives, negativeWords=negatives, similarityScore=similarity)

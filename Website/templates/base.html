@@ -9,7 +9,11 @@
 
     <link rel="stylesheet" type="text/css" href="static/ttdne.css">
     <!--The succeeding line is necessary for the "Poppins" font that I use -->
-    <title>TTDNE</title>
+    
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
   </head>
   <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -22,18 +26,9 @@
         <i class="fas fa-bars"></i>
       </label>
       <ul>
-        <li><a class="active" href="">Random Generation</a></li>
-        <li><a href="topic">Custom Generation</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Source Code</a></li>
-        <li><a href="#">Preferences</a></li>
+        {% block navlist %}{% endblock %}
       </ul>
     </nav>
-    <div class="boxed">
-      Enclosed text goes here! The quick brown fox jumps over the lazy dog.
-    </div>
-    <a class="btn" href="/">
-      <span>Regenerate</span>
-    </a>
+    {% block body %}{% endblock %}
   </body>
 </html>
