@@ -17,19 +17,21 @@ Word Embeddings
 <!--Start Editing Below Here:-->
 
 {% block body %}
-<form method="POST" action="embeddings">
-  <input type="text" placeholder="Type your word here" name="targetWord" required>
-  <br>
-  <input type="submit" value="Go">
-</form>
 
+
+<div class="boxed-form">
+  <form action="embeddings" method="POST">
+    <label for="seed">Target Word: </label>
+    <input type="text" name="targetWord">
+    <input type="submit" value="Go">
+  </form>
+</div>
 <!--Outputs-->
-{{positiveWords}}
-{{negativeWords}}
-{{similarityScore}}
-
 <div class="boxed">
-  Enclosed text goes here! The quick brown fox jumps over the lazy dog.
+  {{positiveWords}}
+  {{negativeWords}}
+  {{similarityScore}}
+  
 </div>
 <a class="btn" href="/">
   <span>Regenerate</span>

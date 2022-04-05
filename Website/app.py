@@ -37,20 +37,15 @@ def topic():
 
 @app.route('/embeddings', methods=['POST', 'GET'])
 def analyzeWord():
-<<<<<<< HEAD
-    if request.method == 'POST' and 'inputWord' in request.form:
+    positives = ''
+    negatives = ''
+    similarity = ''
+    if request.method == 'POST' and 'targetWord' in request.form:
         targetWord = request.form.get("targetWord")
         positives = fast_Text_model.wv.most_similar(targetWord, topn=10)
         negatives = fast_Text_model.wv.most_similar(negative=[targetWord], topn=10)
         similarity = fast_Text_model.wv.similarity(targetWord, 'spirit')
     return render_template('embeddings.html', positiveWords=positives, negativeWords=negatives, similarityScore=similarity)
-=======
-
-    #word = fast_Text_model.wv[targetWord]
-    positives = fast_Text_model.wv.most_similar('chicken', topn=10)
-    #similarity = fast_Text_model.wv.similarity('beer', 'spirit')
-    #negatives = fast_Text_model.wv.most_similar(negative=[targetWord], topn=10)
-    return render_template('embeddings.html', positives)
 
 @app.route('/custom', methods=['POST', 'GET'])
 def customGenerate():
@@ -108,4 +103,3 @@ def customGenerate():
         generated = e
 
     return render_template('custom.html', generated=generated)
->>>>>>> 13c1fef804309c66bf1cfa726e3653d6e0a5ade0
