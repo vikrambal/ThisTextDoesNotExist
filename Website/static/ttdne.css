@@ -112,6 +112,17 @@ color: rgb(240, 154, 25);
   text-align: left;
 }
 
+.boxed-form {
+  border: 3px solid green;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+}
 
 body {
   background: #000000;
