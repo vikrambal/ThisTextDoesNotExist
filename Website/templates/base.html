@@ -18,15 +18,19 @@
   <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <nav>
-      <div class="logo">
-      This Text Does Not Exist
-      </div>
+      <a class="logo" href=".">This Text Does Not Exist</a>
       <input type="checkbox" id="click">
       <label for="click" class="menu-btn">
         <i class="fas fa-bars"></i>
       </label>
       <ul>
-        {% block navlist %}{% endblock %}
+        <li><a {% block navactive1 %}{% endblock %} href="randomgen">Random Generation</a></li>
+        <li><a {% block navactive2 %}{% endblock %} href="storygen">Story Generation</a></li>
+        <li><a {% block navactive3 %}{% endblock %} href="qnagen">Q & A Generation</a></li>
+        <li><a {% block navactive4 %}{% endblock %} href="word-embeddings">Word Embeddings</a></li>
+        <li><a {% block navactive5 %}{% endblock %} href="#">About</a></li>
+        <li><a {% block navactive6 %}{% endblock %} href="#">Source Code</a></li>
+        <li><a {% block navactive7 %}{% endblock %} href="#">Preferences</a></li>
       </ul>
     </nav>
     {% block body %}{% endblock %}

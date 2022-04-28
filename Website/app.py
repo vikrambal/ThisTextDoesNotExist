@@ -29,25 +29,9 @@ app.secret_key = 'himynameistreihaveabasketballgametmrwwhereimapointguardigotsho
 #Opening page here
 @app.route('/')
 def index():
-   return render_template('randomgen.html')
+   return render_template('home.html')
 
-@app.route('/qna')
-def topic():
-    return render_template('qna.html')
-
-@app.route('/embeddings', methods=['POST', 'GET'])
-def analyzeWord():
-    positives = ''
-    negatives = ''
-    similarity = ''
-    if request.method == 'POST' and 'targetWord' in request.form:
-        targetWord = request.form.get("targetWord")
-        positives = fast_Text_model.wv.most_similar(targetWord, topn=10)
-        negatives = fast_Text_model.wv.most_similar(negative=[targetWord], topn=10)
-        similarity = fast_Text_model.wv.similarity(targetWord, 'spirit')
-    return render_template('embeddings.html', positiveWords=positives, negativeWords=negatives, similarityScore=similarity)
-
-@app.route('/custom', methods=['POST', 'GET'])
+@app.route('/randomgen', methods=['POST', 'GET'])
 def customGenerate():
     #length of sequence from text
     sequence_length = 100
@@ -102,4 +86,21 @@ def customGenerate():
     except Exception as e:
         generated = e
 
-    return render_template('custom.html', generated=generated)
+    return render_template('randomgen.html', generated=generated)
+
+@app.route('/qnagen')
+def qnagen():
+    return render_template('qnagen.html')
+
+@app.route('/word-embeddings', methods=['POST', 'GET'])
+def analyzeWord():
+    positives = ''
+    negatives = ''
+    similarity = ''
+    if request.method == 'POST' and 'targetWord' in request.form:
+        targetWord = request.form.get("targetWord")
+        positives = fast_Text_model.wv.most_similar(targetWord, topn=10)
+        negatives = fast_Text_model.wv.most_similar(negative=[targetWord], topn=10)
+        similarity = fast_Text_model.wv.similarity(targetWord, 'spirit')
+    return render_template('word-embeddings.html', positiveWords=positives, negativeWords=negatives, similarityScore=similarity)
+
