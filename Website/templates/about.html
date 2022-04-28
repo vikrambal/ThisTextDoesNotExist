@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}
-Story Generation
+Random Generation
 {% endblock %}
 
-{% block navactive2 %}
+{% block navactive1 %}
 class="active"
 {% endblock %}
 
@@ -18,7 +18,7 @@ class="active"
 </div>
 
 <div class="boxed">
-  Placeholder
+  {{generated}}
 </div>
 <a class="btn" href="/">
   <span>Regenerate</span>

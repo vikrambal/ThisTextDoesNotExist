@@ -93,7 +93,7 @@ def qnagen():
     return render_template('qnagen.html')
 
 @app.route('/word-embeddings', methods=['POST', 'GET'])
-def analyzeWord():
+def wordEmbeddings():
     positives = ''
     negatives = ''
     similarity = ''
@@ -104,3 +104,6 @@ def analyzeWord():
         similarity = fast_Text_model.wv.similarity(targetWord, 'spirit')
     return render_template('word-embeddings.html', positiveWords=positives, negativeWords=negatives, similarityScore=similarity)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
