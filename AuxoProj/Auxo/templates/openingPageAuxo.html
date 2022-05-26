@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Navigation bar, image background, and button inspiration from www.codingnepalweb.com -->
+<!--Ltr signifying ltr, which is necessary in bottom of CSS file-->
+<html lang="en" dir="ltr">
+  <head>
+    <!--Character and font sets required for my visual display-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="static/auxoOpening.css">
+    <!--The succeeding line is necessary for the "Poppins" font that I use -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <title>Welcome to Auxo</title>
+   </head>
+<body>
+  <!--Allows for bar at top with name and logo-->
+  <nav>
+    <div class="menu">
+      <div class="logo">
+        <a href="">Auxo</a>
+      </div>
+    </div>
+  </nav>
+  <!--Allows for background image of dumbbell, buttons-->
+  <div class="img"></div>
+  <div class="center">
+    <div class="title">Fitness Demystified.</div>
+    <div class="sub_title">Start Today</div>
+    <div class="btns">
+      <!--This onblick method was obtained through https://www.geeksforgeeks.org/how-to-create-an-html-button-that-acts-like-a-link/-->
+      <button onclick="window.location.href = 'signup';">Join Now</button>
+      <button onclick="window.location.href = 'login';">Log In</button>
+    </div>
+  </div>
+</body>
+</html>

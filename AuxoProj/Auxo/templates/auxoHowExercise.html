@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/auxoTraining.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How to Exercise</title>
+  </head>
+  <body>
+    <h1>Click on a Muscle Group for Information</h1>
+    <!--Links for Tabs-->
+    <div class="tab">
+      <button class="tablinks" onclick="openStep(event, 'chest')" id="defaultOpen">Chest</button>
+      <button class="tablinks" onclick="openStep(event, 'back')">Back</button>
+      <button class="tablinks" onclick="openStep(event, 'arms')">Arms</button>
+      <button class="tablinks" onclick="openStep(event, 'shoulder')">Shoulders</button>
+      <button class="tablinks" onclick="openStep(event, 'legs')">Legs</button>
+      <button class="tablinks" onclick="openStep(event, 'calves')">Calves</button>
+    </div>
+
+
+
+  <!--Six tabs with chest,back, arms, shoulder, legs, calves muscle groups-->
+  <!--Each provides an image of the group, some exercises, and a video explaining an exercise-->
+
+  <div id="chest" class="tabcontent">
+    <h2>Chest</h2>
+    <img src="static/chest.jpg" alt="Chest" width="200"
+         height="150">
+    <p>My favorite chest exercises:</p>
+    <ul>
+      <li>Pushup (any variation)</li>
+      <li>Bench Press</li>
+      <li>Chest Fly</li>
+    </ul>
+    <iframe width="420" height="315"
+      src="https://www.youtube.com/embed/rxD321l2svE">
+    </iframe>
+  </div>
+
+  <div id="back" class="tabcontent">
+    <h2>Back</h2>
+    <img src="static/back.png" alt="Back" width="200"
+         height="150">
+    <p>My favorite back exercises:</p>
+    <ul>
+      <li>Pull Ups</li>
+      <li>Lat Pulldown</li>
+      <li>Push Ups (again!)</li>
+    </ul>
+    <iframe width="420" height="315"
+      src="https://www.youtube.com/embed/eGo4IYlbE5g">
+    </iframe>
+
+  </div>
+
+  <div id="arms" class="tabcontent">
+    <h2>Arms</h2>
+    <img src="static/arms.jpg" alt="Arms" width="200"
+         height="150">
+    <p>My favorite arm exercises:</p>
+    <ul>
+     <li>Bicep Curls</li>
+     <li>Tricep Pulldown</li>
+     <li>Skull Crusher</li>
+    </ul>
+    <iframe width="420" height="315"
+      src="https://www.youtube.com/embed/in7PaeYlhrM">
+    </iframe>
+
+  </div>
+
+  <div id="shoulder" class="tabcontent">
+    <h2>Shoulders</h2>
+    <img src="static/shoulder.jpg" alt="shoulders" width="200"
+         height="150">
+    <p>My favorite shoulder exercises:</p>
+    <ul>
+      <li>Incline Bench Press</li>
+      <li>Barbell Overhead Press</li>
+      <li>Arnold Press</li>
+    </ul>
+    <iframe width="420" height="315"
+      src="https://www.youtube.com/embed/2yjwXTZQDDI">
+    </iframe>
+
+  </div>
+
+  <div id="legs" class="tabcontent">
+    <h2>Legs</h2>
+    <img src="static/legs.jpg" alt="Legs" width="150"
+         height="150">
+    <p>My favorite leg exercises:</p>
+    <ul>
+      <li>SQUAT!</li>
+      <li>Barbell Lunges</li>
+      <li>Alternating Explosive Lunges</li>
+    </ul>
+    <iframe width="420" height="315"
+      src="https://www.youtube.com/embed/gslEzVggur8">
+    </iframe>
+
+  </div>
+
+
+  <div id="calves" class="tabcontent">
+    <h2>Calves</h2>
+    <img src="static/calves.jpeg" alt="Calves" width="200"
+         height="150">
+    <p>My favorite calf exercises:</p>
+    <ul>
+      <li>Calf Raises</li>
+      <li>Jump Rope</li>
+    </ul>
+    <iframe width="420" height="315"
+      src="https://www.youtube.com/embed/-M4-G8p8fmc">
+    </iframe>
+
+  </div>
+
+
+  <br>
+  <br>
+  <div class="button2" onclick="window.location.href = 'home';">
+    HOME
+  </div>
+
+    <script>
+    function openStep(evt, stepName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(stepName).style.display = "block";
+      evt.currentTarget.className += " active";
+      }
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+
+    // ALL JAVASCRIPT/TAB INSPIRATION COMES FROM https://www.w3schools.com/howto/howto_js_tabs.asp
+
+          // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

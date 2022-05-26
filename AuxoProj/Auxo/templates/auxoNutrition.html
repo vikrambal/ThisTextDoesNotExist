@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/auxoCSS.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nutrition</title>
+  </head>
+  <body>
+    <h1>Eating is a matter of questions.</h1>
+    <!--Links for Tabs-->
+    <div class="tab">
+      <button class="tablinks" onclick="openStep(event, 'howMuch')" id="defaultOpen">How Much?</button>
+      <button class="tablinks" onclick="openStep(event, 'what')">What?</button>
+      <button class="tablinks" onclick="openStep(event, 'when')">When?</button>
+      <button class="tablinks" onclick="openStep(event, 'how')">How?</button>
+      <button class="tablinks" onclick="openStep(event, 'why')">Why?</button>
+    </div>
+
+
+
+<!--Basic information about what to eat, how much to eat, when to eat, etc.-->
+
+  <div id="howMuch" class="tabcontent">
+    <h2>How much?</h2>
+    <p>Imagine this: you're trying to get into working out but you just can't
+       figure out how much you need to eat for your nutritional goals. Maybe
+       don't have to "imagine" because you're going through this right now.</p>
+     <span>Trust me - I've been there. To save you the trouble, this is your mathematically calculated caloric goal: </span>
+     {% for num in nutrition%}
+      <div class = "calNumber">
+        <span>{{num.cal}} calories</span>
+      </div>
+     {% endfor %}
+
+  </div>
+
+  <div id="what" class="tabcontent">
+    <h2>What?</h2>
+    <p>One of the things that many fitness-conscious people track is their consumption of macronutrients.
+       You may have learned about "macros" during your biology class: carbohydrates, proteins, and fats.</p>
+    <p>Protein is absolutely essential for muscle growth, as it constitutes a large part of the muscle (just like water!).
+       Carbs are important for providing energy - especially helpful during strenuous workouts.</p>
+    <p>And as ironic as it seems, you have to eat fat. Fat helps with anabolic hormone production (and energy storage).
+       And definitely, definitely, definitely go for unsaturated fat over saturated fat. Olives, avocados, nuts, and legumes will always reign supreme over potato chips (in health but not taste).</p>
+    <p>Precision, precision, precision is important. So we calculated the macros for you!</p>
+    <p>Here are your exact splits:</p>
+    {% for category in nutrition %}
+     <div class = "carb">
+       <p>Carb: {{category.carb}} grams</p>
+     </div>
+     <div class = "protein">
+       <p>Protein: {{category.protein}} grams</p>
+     </div>
+     <div class = "fat">
+       <p>Fat: {{category.fat}} grams</p>
+     </div>
+     <div class = "sugar">
+       <p>Sugar: {{category.sugar}} grams</p>
+     </div>
+    {% endfor %}
+
+  </div>
+
+  <div id="when" class="tabcontent">
+    <h2>When?</h2>
+    <p>You can get everything right in terms of diet except timing and frequency and see diminished results.
+       The bottom line is: eat five or six small meals throughout the day.</p>
+    <p>If you're trying to gain muscle, eating these multiple interspersed meals will allow you
+       to reach your caloric goals. And if your goal is to lose fat, this pattern will help you not feel ravenous.</p>
+    <p>Some tips:</p>
+    <ul>
+      <li>Eat your first meal as soon as you wake up.</li>
+      <li>Eat at about 3 hour intervals.</li>
+      <li>Before exercise, have a pre-workout drink or snack within an hour of starting and have another within an hour of completion.</li>
+    </ul>
+  </div>
+
+  <div id="how" class="tabcontent">
+    <h2>How?</h2>
+    <div class="video">
+      <iframe width="420" height="315"
+        src="https://www.youtube.com/embed/jwWpTAXu-Sg">
+      </iframe>
+    </div>
+    <p>Eating healthy can be more difficult logistically and mentally than physically.
+       This video does a good job of explaining several concepts for success, including
+       meal preparation, "avoiding the artificial," and purchasing the right products.</p>
+
+
+  </div>
+
+  <div id="why" class="tabcontent">
+    <h2>Why?</h2>
+    <p>The human body operates in interesting ways. The most important things you should consider when working out are
+       how much you put in your body and how much is exerted through exercise. </p>
+    <p>This is the heart of nutrition. If you eat more than you exert, you are at a caloric surplus. This will direct the extra calories
+        to grow more mass, and you will get bigger (hopefully with muscle). If you exert more than you eat, you will be at a caloric deficit, and will lose fat. </p>
+    <p>As for muscular content, the most important components are water and protein. This is the reason that protein is emphasized so much during weight gain - it is one of the building
+       blocks for muscle! This is also the reason that people consume protein bars and protein shakes. </p>
+    <p>And don't forget about the building of block of not just muscles, but life. Muscles are primarily water, so drinking water is essential at all times. Recommended consumption is about
+       8 cups per day (as you've probably heard so many times), but it varies depending on person and activity level.</p>
+  </div>
+
+
+  <br>
+  <br>
+  <div class="button2" onclick="window.location.href = 'home';">
+    HOME
+  </div>
+
+    <script>
+    function openStep(evt, stepName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(stepName).style.display = "block";
+      evt.currentTarget.className += " active";
+      }
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+
+    // ALL JAVASCRIPT/TAB INSPIRATION COMES FROM https://www.w3schools.com/howto/howto_js_tabs.asp
+
+          // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

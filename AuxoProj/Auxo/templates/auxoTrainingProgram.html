@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/auxoTraining.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Training Program</title>
+  </head>
+  <body>
+    <div class="tab">
+      <button class="tablinks" onclick="openStep(event, 'week1')" id="defaultOpen">Week One</button>
+      <button class="tablinks" onclick="openStep(event, 'week2')">Week Two</button>
+      <button class="tablinks" onclick="openStep(event, 'week3')">Week Three</button>
+      <button class="tablinks" onclick="openStep(event, 'week6')">Week Six</button>
+      <button class="tablinks" onclick="openStep(event, 'summary')">Ideas</button>
+    </div>
+
+
+
+
+    <!--Credit to Coach Huegli and Lakeside Strength and Conditioning for Workout Programs-->
+  <div id="week1" class="tabcontent">
+    <h2>Week One</h2>
+    <img src="static/week1.jpg" alt="Week 1 Workout" width="570"
+         height="630">
+  </div>
+
+  <div id="week2" class="tabcontent">
+    <h2>Week Two</h2>
+    <img src="static/week2.jpg" alt="Week 2 Workout" width="570"
+         height="630">
+
+  </div>
+
+  <div id="week3" class="tabcontent">
+    <h2>Week Three</h2>
+    <img src="static/week3.jpg" alt="Week 3 Workout" width="570"
+         height="630">
+  </div>
+
+  <div id="week6" class="tabcontent">
+    <h2>Week Six</h2>
+    <img src="static/week6.jpg" alt="Week 6 Workout" width="570"
+         height="630">
+  </div>
+
+  <div id="summary" class="tabcontent">
+    <h2>Summary</h2>
+    <p>You can do as much with this program as you wish. It's an excellent program if
+       your primary goals are to increase explosiveness and increase general strength.
+       You can see that the workout is set around "compoumd lifts," like squats, bench press,
+       and cleans - which reap the most benefit because of how many muscle groups they
+       target.</p>
+     <p>If you would like an elite training program (and have accesss to a gym with the necessary
+        equipment), feel free to give this a shot! If not, this is a good resource for gauging
+        difficulty in terms of a single workout, finding individual exercises that work for you,
+        or just having a foundation for you to develop your own routine.</p>
+      <p>Remember - the power is in your hands! But don't worry, there's no weight on your shoulders to do anything
+         (unless you happen to be doing back squats in which case you should readjust the bar to rest
+         on your upper traps - little joke there!) Have fun, and rock out!</p>
+  </div>
+
+
+  <br>
+  <div class="button2" onclick="window.location.href = 'home';">
+    HOME
+  </div>
+
+    <script>
+    function openStep(evt, stepName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(stepName).style.display = "block";
+      evt.currentTarget.className += " active";
+      }
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+
+    // ALL JAVASCRIPT/TAB INSPIRATION COMES FROM https://www.w3schools.com/howto/howto_js_tabs.asp
+
+          // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

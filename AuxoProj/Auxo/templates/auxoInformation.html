@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/auxoLogin.css">
+    <title>Information</title>
+  </head>
+  <body>
+    <!--Simple form that asks for some user information for calculations-->
+    <form autocomplete='off' method = "POST" action = "information">
+      <div class='control'>
+        <h1>
+          Let's Get Started!
+        </h1>
+        <p>Please enter a couple easy questions as we personalize your experience!</p>
+      </div>
+      <br>
+      <div class="texts">
+        <p>Please enter your weight to the nearest POUND:</p>
+      </div>
+      <div class='control block-cube block-input'>
+        <input name='Weight' placeholder='         Weight' type='number' required>
+        <div class='bg-top'>
+          <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+          <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+          <div class='bg-inner'></div>
+        </div>
+      </div>
+
+      <div class="texts">
+        <p>Please enter how many minutes a day you exercise on average (to nearest minute):</p>
+      </div>
+      <div class='control block-cube block-input'>
+        <input name='ActivityNum' placeholder='        Minutes' type='number' required>
+        <div class='bg-top'>
+          <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+          <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+          <div class='bg-inner'></div>
+        </div>
+      </div>
+
+      <!--Idea for toggle from https://www.sliderrevolution.com/resources/css-toggle-switch/-->
+      <div class="texts">
+        <p>Please select your PRIMARY fitness goal:</p>
+      </div>
+      <div class="toggle">
+        <input id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio" checked required>
+        <label for="toggle-on" class="btn">Gain muscle</label>
+        <input id="toggle-off" class="toggle toggle-right" name="toggle" value="true" type="radio">
+        <label for="toggle-off" class="btn">Lose fat</label>
+      </div>
+      <br>
+      <br>
+
+      <div class="button2">
+        <input type="submit" value="Enter">
+      </div>
+    </form>
+  </body>
+</html>

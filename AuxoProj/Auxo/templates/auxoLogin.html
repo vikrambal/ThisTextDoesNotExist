@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/auxoLogin.css">
+    <title>Log In</title>
+  </head>
+  <body>
+    <form autocomplete='off' method = "POST" action = "login">
+      <div class='control'>
+        <h1>
+          Log In
+        </h1>
+      </div>
+
+      <!--Form that asks for login information to allow user to site-->
+      <div class='control block-cube block-input'>
+        <input name='username' placeholder='Username' type='text' required>
+        <div class='bg-top'>
+          <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+          <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+          <div class='bg-inner'></div>
+        </div>
+      </div>
+      <div class='control block-cube block-input'>
+        <input name='password' placeholder='Password' type='password' required>
+        <div class='bg-top'>
+          <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+          <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+          <div class='bg-inner'></div>
+        </div>
+      </div>
+      <div class="button2">
+        <input type="submit" value="Log In">
+      </div>
+    </form>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <span>Don't have an account??</span>
+    <br>
+    <br>
+    <div class="button2" onclick="window.location.href = 'signup';">
+      Sign Up
+    </div>
+  </body>
+</html>

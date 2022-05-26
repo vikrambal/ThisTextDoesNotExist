@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/auxoLogin.css">
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <!-- Features the numerous questions that the user should input - relatively intuitive -->
+    <!--Credit to https://www.csscodelab.com/pure-css-cube-buttons-inputs-login-form/ for HTML and CSS for cubes for this page and login-->
+      <form autocomplete='off' method = "POST" action = "signup">
+        <div class='control'>
+          <h1>
+            Create Account
+          </h1>
+        </div>
+        <p>Please enter the following.</p>
+        <div class='control block-cube block-input'>
+          <input name='Name' placeholder='Name' type='text' required>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        </div>
+        <div class='control block-cube block-input'>
+          <input name='Age' placeholder='Age' type='number' required>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        </div>
+
+        <div class='control block-cube block-input'>
+          <input name='Username' placeholder='Preferred Username' type='text' required>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        </div>
+
+        <div class='control block-cube block-input'>
+          <input name='Password' placeholder='Preferred Password' type='password' required>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        </div>
+
+        <div class='control block-cube block-input'>
+          <input name='Password2' placeholder='Re-Enter Password' type='password' required>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        </div>
+
+        <p>Password Requirements </p>
+        <ul>
+          <li> Must include at least 8 characters </li>
+          <li> Must include at least 1 number </li>
+          <li> Passwords must match </li>
+        </ul>
+
+        <div class="button2">
+          <input type="submit" value="Sign Up">
+        </div>
+      </form>
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class ="alreadyAccount">
+        <span>Already have an account?</span>
+        <br>
+        <br>
+        <div class="button2" onclick="window.location.href = 'login';">
+          Log In
+        </div>
+      </div>
+  </body>
+</html>
