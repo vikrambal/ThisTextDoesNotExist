@@ -1,26 +1,37 @@
 {% extends "base.html" %}
 
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="static/secondary.css">
+{% endblock %}
+
 {% block title %}
 Random Generation
 {% endblock %}
 
-{% block navactive1 %}
-class="active"
-{% endblock %}
-
 {% block body %}
+<br><br><br><br><br><br><br><br><br><br>
+
+<h2 class="myH2">RNN/LSTM</h2>
+<p style="text-align: center">Model based on Alice in Wonderland book</p>
+<br><br>
 <div class="boxed-form">
-  <form action="custom" method="POST">
-    <label for="seed">Seed: </label>
+  <form action="randomgen" method="POST">
+    <label for="seed">Seed (10+ characters): </label>
     <input type="text" name="seed">
-    <input type="submit" value="Submit">
+    <br><br>
+    <label for="genlength">Gen Length (50-1000 characters): </label>
+    <input type="number" name="genlength" min="50" max="1000" value="50">
+    <br><br>
+    * Note: Longer gen length will require time.
+    <br><br>
+    <input class='genbtn' type="submit" value="Generate">
   </form>
 </div>
+<br><br>
 
-<div class="boxed">
-  {{generated}}
-</div>
-<a class="btn" href="/">
-  <span>Regenerate</span>
-</a>
+<p style="font-size: 30px; text-align: center">Generated Text:</p>
+<p class="myP" style="text-align: center">
+{{generated}}
+</p>
+  
 {% endblock %}

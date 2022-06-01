@@ -1,26 +1,77 @@
 {% extends "base.html" %}
 
-{% block title %}
-Random Generation
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="static/secondary.css">
 {% endblock %}
 
-{% block navactive1 %}
-class="active"
+{% block title %}
+About TTDNE
 {% endblock %}
 
 {% block body %}
-<div class="boxed-form">
-  <form action="custom" method="POST">
-    <label for="seed">Seed: </label>
-    <input type="text" name="seed">
-    <input type="submit" value="Submit">
-  </form>
+<br><br><br><br><br><br><br><br><br><br>
+<h2 class="myH2">About TTDNE</h2>
+<p class="myP">RNNs - A Brief Overview:</p>
+<br/>
+<p class="myP">A recurrent neural network (RNN) is a machine learning model applied to data
+  sequences (Helmini). RNNs are commonly used to solve problems such as translation,
+  image recognition, and speech transcription (Recurrent Neural Networks). RNNs
+  were frequently used for the task of text generation but their use for this task
+  has declined since the development of transformers.
+</p>
+<br/>
+<p class="myP">RNN are a specific type of neural network, a computer system modeled on the
+  human brain and nervous system, that is distinguished from other neural networks
+  by its “memory” (Recurrent Neural Networks). An RNN has the capability to
+  “remember” information and simply function as one does because of its unique
+  architecture. Simply put, a RNN is comprised of an input layer, a number of hidden
+  layers, and an output layer.
+</p>
+<br/>
+<div class="img-center">
+  <img class="RNN-img" src="https://miro.medium.com/max/1400/1*K6s4Li0fTl1pSX4-WPBMMA.jpeg" alt="RNN Diagram">
 </div>
+<br/>
+<p class="myP">What creates this “memory” and makes an RNN recursive is how the model is able
+  to leverages past outputs (Introduction). The model does this by what’s reffered
+  to as “unrolling.” Basically, the model will split into a number of units based
+  off of the specified number of steps and pass information between each step while
+  generating output (Helmini). The output from a previous step is used as input
+  along with the pre-existing input that is the dataset the model is trained on
+  (Helmini). For example, in a simplified case of text generation on a single
+  sentence, an RNN would start stepping through the sentence, generating its own
+  expected output at the first step. The output from the first step would then be
+  stored by what is referred to as the “hidden layer” and used as an input for the
+  next step in the sentence (Introduction). The process of stepping through the
+  sentence continues, storing each step’s output with the “hidden layer” and then
+  feeding the past output as a parameter to the current step.
+</p>
+<br/>
+<div class="img-center">
+  <img class="RNN-img" src="https://i.stack.imgur.com/tN0PF.png" alt="RNN Diagram">
+</div>
+<br/>
+<p class="myP">Because of the RNN’s architecture, the data being fed to an RNN also has to be
+  a specific structure (Helmini). The data fed to a RNN must have at least three
+  dimensions, which often is batch size, number of steps, and number of features
+  (Helmini). Of these three dimensions, batch size is the number of samples propagated
+  through the RNN, number of steps corresponds to number of times input is fed within
+  one batch of the data, and number of features is the data points within one time step (Helmini).
+</p>
+<br/>
+<div class="img-center">
+  <img class="RNN-img" src="https://miro.medium.com/max/1400/1*2NBMWLXqeTXh4kG7VuJxow.jpeg" alt="RNN Diagram">
+</div>
+<br/>
+<p class="myP">Sources Cited:</p>
+<br/>
+<ul>
+  <p class="myP">https://www.ibm.com/cloud/learn/recurrent-neural-networks</p>
+  <p class="myP">https://www.geeksforgeeks.org/introduction-to-recurrent-neural-network/</p>
+  <p class="myP">https://towardsdatascience.com/recurrent-neural-networks-b7719b362c65</p>
+  <p class="myP">https://towardsdatascience.com/all-you-need-to-know-about-rnns-e514f0b00c7c</p>
+</ul>
 
-<div class="boxed">
-  {{generated}}
-</div>
-<a class="btn" href="/">
-  <span>Regenerate</span>
-</a>
+<section class="home">
+</section>
 {% endblock %}

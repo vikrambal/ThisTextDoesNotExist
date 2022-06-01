@@ -1,34 +1,209 @@
 {% extends "base.html" %}
 
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="static/secondary.css">
+{% endblock %}
+
 {% block title %}
 Word Embeddings
 {% endblock %}
 
-{% block navactive4 %}
-class="active"
+{% block headjsfunctions %}
+<!-- Checkbox Hidden Fields: https://stackoverflow.com/questions/25870898/input-field-appear-after-selecting-a-check-box-html -->
+<script type="text/javascript">
+ function dynInput(cbox) {
+  if (cbox.checked) {
+    var input = document.createElement("input");
+    input.type = "number";
+    input.name = "n" + cbox.name;
+    input.min = "10";
+    input.max = "100";
+    input.value = "10";
+    var div = document.createElement("div");
+    div.id = cbox.name;
+    div.innerHTML = "Number of " + cbox.name + " Words (10-100): ";
+    div.appendChild(input);
+    document.getElementById("insertinputs").appendChild(div);
+  } else {
+    document.getElementById(cbox.name).remove();
+  }
+}
+ </script>
 {% endblock %}
 
-
-<!--Start Editing Below Here:-->
-
 {% block body %}
+<br><br><br><br><br><br><br><br><br><br>
 
-
+<h2 class="myH2">Word Embeddings</h2>
+<p style="text-align: center">Model based on Yelp data</p>
+<br><br>
 <div class="boxed-form">
-  <form action="embeddings" method="POST">
-    <label for="seed">Target Word: </label>
-    <input type="text" name="targetWord">
-    <input type="submit" value="Go">
+  <form action="word-embeddings" method="POST">
+    <p style="text-align: center">Graph Settings:</p>
+    <label for="targetWord">Target Word: </label>
+    <input type="text" name="targetWord" required>
+    <br>
+    <label for="graphSimWords">Number of Similar Words (10-100): </label>
+    <input type="number" name="topnSimGraph" min="10" max="100" value="10">
+    <p style="text-align: center">Additional Analysis:</p>
+    <input type="checkbox" name="Similar" onclick="dynInput(this);" />
+    <label for="simwords">Find Similar Words</label>
+    <input type="checkbox" name="Opposite" onclick="dynInput(this);" />
+    <label for="oppwords">Find Opposite Words</label>
+    <br>
+    <div id="insertinputs"></div>
+    <br>
+    {{alertmsg}}
+    <br>
+    <br>
+    <input class='genbtn' type="submit" value="Go">
   </form>
 </div>
+
 <!--Outputs-->
-<div class="boxed">
-  {{positiveWords}}
-  {{negativeWords}}
-  {{similarityScore}}
-  
+<br><br><br><br><br><br><br><br><br><br>
+<hr>
+<p style="font-size: 30px; text-align: center">Target Word:</p>
+<p class="myP" style="text-align: center">
+  {{targetWord}}
+</p>
+<div>
+<br>
+
 </div>
-<a class="btn" href="/">
-  <span>Regenerate</span>
-</a>
+<div style="background-color: #fff">
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+
+  <!-- Create a div where the circle will take place -->
+  <div id="dataviz_brushZoom"></div>
+
+  <script>
+    // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 30, bottom: 30, left: 660},
+        width = 1260 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var Svg = d3.select("#dataviz_brushZoom")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+
+    //Read the data
+    //Change link when uploading to site
+    d3.csv("http://127.0.0.1:5000/static/ft_model_query.csv", function(data) {
+      // Add X axis
+      var x = d3.scaleLinear()
+        .domain([-600, 600])
+        .range([ 0, width ]);
+      var xAxis = Svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+        
+      // Add Y axis
+      var y = d3.scaleLinear()
+        .domain([-600, 600])
+        .range([ height, 0]);
+      var yAxis = Svg.append("g")
+        .attr("transform", "translate(0)")
+        .call(d3.axisLeft(y));
+
+      // Add a clipPath: everything out of this area won't be drawn.
+      var clip = Svg.append("defs").append("svg:clipPath")
+          .attr("id", "clip")
+          .append("svg:rect")
+          .attr("width", width )
+          .attr("height", height )
+          .attr("x", 0)
+          .attr("y", 0);
+
+      // Color scale: give me a specie name, I return a color
+      var color = d3.scaleOrdinal()
+        .domain(["red", "green"])
+        .range([ "#b53737ff", "#0e6b0eff"]);
+
+      // Add brushing
+      var brush = d3.brush()                 // Add the brush feature using the d3.brush function
+          .extent( [ [0,0], [width,height] ] ) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+          .on("end", updateChart); // Each time the brush selection changes, trigger the 'updateChart' function
+
+      // Create the scatter variable: where both the circles and the brush take place
+      var scatter = Svg.append("g")
+        .attr("clip-path", "url(#clip)")
+
+      // Create gdots variable to add data elements
+      var gdots = scatter.selectAll("dot").data(data).enter().append("g");
+
+      // Add circles
+      gdots.append("circle")
+        .attr("cx", function (d) { return x(d.xCoord); } )
+        .attr("cy", function (d) { return y(d.yCoord); } )
+        .attr("r", 5)
+        .style("fill", function (d) { return color(d.words_color) } )
+        .style("opacity", 0.7);
+
+      // Add labels
+      gdots.append("text")
+          .attr("x", function(d) { return x(d.xCoord); } )
+          .attr("y", function(d) { return y(d.yCoord); } )
+          .text(function (d) { return d.words_name; } );
+
+      // Add the brushing
+      scatter
+        .append("g")
+          .attr("class", "brush")
+          .call(brush);
+
+      // A function that set idleTimeOut to null
+      var idleTimeout
+      function idled() { idleTimeout = null; }
+
+      // A function that update the chart for given boundaries
+      function updateChart() {
+        
+        extent = d3.event.selection;
+
+        // If no selection, back to initial coordinate. Otherwise, update X axis domain
+        if(!extent){
+          if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+          x.domain([-600,600]);
+          y.domain([-600,600]);
+        }else{
+          x.domain([extent[0][0], extent[1][0]].map(x.invert, x));
+          y.domain([extent[1][1], extent[0][1]].map(y.invert, y));
+          scatter.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+        }
+
+        // Update axis and circle position
+        xAxis.transition().duration(1000).call(d3.axisBottom(x));
+        yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+        scatter.selectAll("circle").transition().duration(1000)
+          .attr("cx", function (d) { return x(d.xCoord); } )
+          .attr("cy", function (d) { return y(d.yCoord); } );
+          
+        scatter.selectAll("text").transition().duration(1000)
+          .attr("x", function (d) { return x(d.xCoord); } )
+          .attr("y", function (d) { return y(d.yCoord); } );
+
+        }
+
+    })   
+  </script>
+</div>
+
+<p style="font-size: 30px; text-align: center">Similar Words Display Here:</p>
+<p class="myP" style="text-align: center">
+  {{positiveWords}}
+</p>
+
+<p style="font-size: 30px; text-align: center">Opposite Words Display Here:</p>
+<p class="myP" style="text-align: center">
+  {{negativeWords}}
+</p>
+
 {% endblock %}

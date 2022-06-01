@@ -3,27 +3,43 @@
 <!--Ltr signifying ltr, which is necessary in bottom of CSS file-->
 <html lang="en" dir="ltr">
   <head>
-    <!--Character and font sets required for my visual display-->
+    <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="static/ttdne.css">
-    <!--The succeeding line is necessary for the "Poppins" font that I use -->
+    {% block stylesheet %}
+    {% endblock %}
 
     <title>
         {% block title %}
         {% endblock %}
     </title>
+
+    {% block headjsfunctions %}
+    {% endblock %}
   </head>
   <body>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <nav>
-      <a class="logo" href=".">This Text Does Not Exist</a>
-      <input type="checkbox" id="click">
-      <label for="click" class="menu-btn">
-        <i class="fas fa-bars"></i>
-      </label>
-      <ul>
+    <nav class="nav">
+      <div class="container">
+          <div class="logo">
+              <a href=".">This Text Does Not Exist</a>
+          </div>
+          <div id="mainListDiv" class="main_list">
+              <ul class="navlinks">
+                  <li><a href="about">About</a></li>
+                  <li><a href="generation">Generation</a></li>
+                  <li><a href="word-embeddings">Word Embeddings</a></li>
+                  <li><a href="source">Source</a></li>
+              </ul>
+          </div>
+          <span class="navTrigger">
+              <i></i>
+              <i></i>
+              <i></i>
+          </span>
+      </div>
+    </nav>
+    <!--
         <li><a {% block navactive1 %}{% endblock %} href="randomgen">Random Generation</a></li>
         <li><a {% block navactive2 %}{% endblock %} href="storygen">Story Generation</a></li>
         <li><a {% block navactive3 %}{% endblock %} href="qnagen">Q & A Generation</a></li>
@@ -31,8 +47,29 @@
         <li><a {% block navactive5 %}{% endblock %} href="about">About</a></li>
         <li><a {% block navactive6 %}{% endblock %} href="#">Source Code</a></li>
         <li><a {% block navactive7 %}{% endblock %} href="#">Preferences</a></li>
-      </ul>
-    </nav>
+    -->
     {% block body %}{% endblock %}
   </body>
 </html>
+
+<!-- Jquery needed -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/scripts.js"></script>
+
+<!-- Function used to shrink nav bar removing paddings and adding black background -->
+<script>
+    $(window).scroll(function() {
+        if ($(document).scrollTop() > 50) {
+            $('.nav').addClass('affix');
+            console.log("OK");
+        } else {
+            $('.nav').removeClass('affix');
+        }
+    });
+    $(".navTrigger").click(function () {
+      $(this).toggleClass("active");
+      console.log("Clicked menu");
+      $("#mainListDiv").toggleClass("show_list");
+      $("#mainListDiv").fadeIn();
+    });
+</script>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="static/secondary.css">
+{% endblock %}
+
+{% block title %}
+TTDNE
+{% endblock %}
+
+{% block body %}
+<form autocomplete='off' class='form'>
+    <br><br><br><br><br><br><br><br><br><br>
+    <a class='btn block-cube block-cube-hover' type='button' href="randomgen">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='text'>
+            RNN/LSTM
+        </div>
+    </a>
+    <br><br><br><br><br><br><br><br><br><br>
+    <a class='btn block-cube block-cube-hover' type='button' href="storygen">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='text'>
+            Storytelling
+        </div>
+    </a>
+    <br><br><br><br><br><br><br><br><br><br>
+    <a class='btn block-cube block-cube-hover' type='button' href="qnagen">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='text'>
+            Question-Answer
+        </div>
+    </a>
+</form>
+{% endblock %}

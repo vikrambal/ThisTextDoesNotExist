@@ -1,15 +1,24 @@
 {% extends "base.html" %}
 
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="static/ttdne.css">
+{% endblock %}
+
 {% block title %}
 TTDNE
 {% endblock %}
 
 {% block body %}
-
-<div class="boxed">
-  Explore page. Blah blah blah. Check out random generation below :)
+<section class="home">
+</section>
+<div style="height: 1000px">
+    <!-- just to make scrolling effect possible -->
+  <h2 class="myH2">What is our mission?</h2>
+  <p class="myP">
+    This Text Does Not Exist is the revolutionary approach to produce text - not from a human, but a computer.
+    Use our Transformer-driven or LSTM models to generate text from three contexts: random generation, storytelling from a user-inputted seed, and question-answering.
+    Our goal is to democratize AI, so check out our About pages to get a functional understanding of LSTMs, RNNs, Transformers, and word embeddings. Our source code is pasted in our GitHub for your viewing.
+    Play around with our models and have a blast! 47.731510, -122.328090
+  </p>
 </div>
-<a class="btn" href="randomgen">
-  <span>Random Generation</span>
-</a>
 {% endblock %}
